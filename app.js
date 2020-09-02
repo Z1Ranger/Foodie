@@ -1,8 +1,10 @@
 var express = require("express");
 var app = express();
 
+app.set("view engine", "ejs");
+
 app.get("/", function(req, res){
-    res.send("landing page! - testing server connection")
+    res.render("landing")
 })
 
 app.listen(3000, function(){
