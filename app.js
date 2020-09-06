@@ -6,13 +6,15 @@ var Campground = require("./models/campgrounds");
 var Comment = require("./models/comments");
 var seedDB = require("./seeds");
 
-seedDB();
+
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {
     useNewUrlParser: true,
     useUnifiedTopology: true})
     .then(()=>console.log('Connected to DB!'))
     .catch(error => console.log(error.message))
     ;
+
+seedDB();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
@@ -29,7 +31,7 @@ app.get("/campgrounds", function(req, res){
             console.log(err);
         }
         else{
-            res.render("campgrounds", {campgrounds: allCampgrounds});
+            res.render("campgrounds/campgrounds", {campgrounds: allCampgrounds});
         }
     }); 
 });
@@ -56,7 +58,7 @@ app.post("/campgrounds", function(req, res){
 
 //NEW
 app.get("/campgrounds/new", function(req, res){
-    res.render("new");
+    res.render("campgrounds/new");
 })
 
 //SHOW
@@ -66,9 +68,18 @@ app.get("/campgrounds/:id",function(req, res){
             console.log(err);
         }
         else{
-            res.render("show", {campground: foundCampground});
+            res.render("campgrounds/show", {campground: foundCampground});
         }
     });
+});
+
+// ===================
+// COMMENTS ROUTES  
+// ===================
+
+app.get("/campgrounds/:id/comments/new", function(req, res){
+    var id = req.params.id;
+    res.render("comments/new")
 });
 
 app.listen(3000, function(){
