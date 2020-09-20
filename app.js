@@ -20,7 +20,7 @@ mongoose.connect("mongodb://localhost:27017/yelp_camp", {
     .catch(error => console.log(error.message))
     ;
 
-seedDB();
+// seedDB();
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
