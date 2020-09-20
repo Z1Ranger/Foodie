@@ -1,4 +1,4 @@
-# Foodie
+# Foodie 🍴
 Foodie is a website where users can create and review restaurants.
 
 This project was created using Node.js, Express, MongoDB, EJS and Bootstrap.
