@@ -4,17 +4,17 @@ var app = express();
 var mongoose = require("mongoose");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
-var Campground = require("./models/campgrounds");
+var Restaurant = require("./models/restaurants");
 var Comment = require("./models/comments");
 var User = require("./models/user");
 var seedDB = require("./seeds");
 var methodOverride = require("method-override");
 
 var commentRoutes = require("./routes/comments"),
-campgroundRoutes = require("./routes/campgrounds"),
+restaurantRoutes = require("./routes/restaurants"),
 indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {
+mongoose.connect("mongodb://localhost:27017/foodie", {
     useNewUrlParser: true,
     useUnifiedTopology: true})
     .then(()=>console.log('Connected to DB!'))
@@ -30,7 +30,7 @@ app.use(methodOverride("_method"));
 
 //Passport Configuration
 app.use(require("express-session")({
-    secret: "Once again Rusty wins cutest dog!",
+    secret: "secret",
     resave: false,
     saveUninitialized: false
 }));
@@ -46,9 +46,9 @@ app.use(function(req, res, next){
 })
 
 app.use(indexRoutes);
-app.use(campgroundRoutes);
+app.use(restaurantRoutes);
 app.use(commentRoutes);
 
 app.listen(3000, function(){
-    console.log("The YelpCamp Server Has Started!");
+    console.log("The Foodie Server Has Started!");
 });

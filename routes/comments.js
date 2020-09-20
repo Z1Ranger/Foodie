@@ -1,24 +1,24 @@
 var express = require("express");
 var router = express.Router();
-var Campground = require("../models/campgrounds");
+var Restaurant = require("../models/restaurants");
 var Comment = require("../models/comments");
 
 
-router.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res){
+router.get("/restaurants/:id/comments/new", isLoggedIn, function(req, res){
     var id = req.params.id;
-    Campground.findById(id, function(err, campground){
+    Restaurant.findById(id, function(err, restaurant){
         if (err){
             console.log(err);
         }
         else{
-            res.render("comments/new", {campground: campground});
+            res.render("comments/new", {restaurant: restaurant});
         }
     })
 });
 
-router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
+router.post("/restaurants/:id/comments", isLoggedIn, function(req, res){
     var id = req.params.id;
-    Campground.findById(id, function(err, campground){
+    Restaurant.findById(id, function(err, restaurant){
         if (err){
             console.log(err);
         }
@@ -31,9 +31,9 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
                     comment.save();
-                    campground.comments.push(comment);;
-                    campground.save();
-                    res.redirect('/campgrounds/' + campground._id);
+                    restaurant.comments.push(comment);;
+                    restaurant.save();
+                    res.redirect('/restaurants/' + restaurant._id);
                 }
 
             });
