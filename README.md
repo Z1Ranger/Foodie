@@ -3,6 +3,9 @@ Foodie is a website where users can create and review restaurants.
 
 This project was created using Node.js, Express, MongoDB, EJS and Bootstrap.
 
+<img src='readme/res1.png' height = 150> <img src='readme/res2.png' height = 150> <img src='readme/res3.png' height = 150>
+
+
 ## Key Features:
 
 - User login and sign up with username and password using Passport.js
