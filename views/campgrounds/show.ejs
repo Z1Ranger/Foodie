@@ -16,6 +16,8 @@
                 <div class="caption-full">
                     <h4><a href=""><%= campground.name %></a></h4>
                     <p> <%= campground.description %> </p>
+                    <p>Submitted By <%= campground.username%></p>
+                    <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>">Update</a>
                 </div>
             </div>
             <div class="well">
